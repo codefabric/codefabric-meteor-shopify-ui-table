@@ -1,0 +1,53 @@
+<!-- client/views/shopifyItemDisplay.html -->
+
+<template name="codefabricShopifyUITableItemDisplay">
+  <tr class="{{ selectionClass }}">
+    {{#each this.table.settings.columns}}
+      {{#if visible }}
+        {{#if codefabricUtils.eq type 'select'}}
+          <td class="select">
+            <input type="checkbox" title="Select {{table.settings.type}}" class="checkbox select" {{ selected }} /> 
+          </td>
+        {{else}}
+          {{#if codefabricUtils.eq type 'detail'}}
+            <td class="detail">
+              <a class="detail-expand" href data-detail="{{ codefabricUtils.getValue .. this.table.settings.idField }}" title="Show {{ displayName }}"><i class="fa fa-caret-down"></i></a>
+            </td>
+          {{else}}
+            {{#if displayTemplate}}
+              <td>
+                {{> Template.dynamic template=displayTemplate data=(codefabricUtils.getValue .. field)}}
+              </td>
+            {{else}}
+              <td>{{codefabricUtils.getValue .. field}}</td>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    {{/each}}
+    {{#if codefabricUtils.and table.settings.inline}}
+    <td>
+    {{#if this.table.settings.canEdit }}
+      <a class="btn default edit" href>{{editButtonText}}</a>
+    {{/if}}
+    {{#if this.table.settings.canRemove }}
+      <a class="btn default delete" href>{{removeButtonText}}</a>
+    {{/if}}
+    </td>
+    {{/if}}
+  </tr>
+  {{#if codefabricUtils.contains this.table.settings.columns 'detail' 'type' }}
+    <tr class="detail" data-detail="{{ codefabricUtils.getValue . this.table.settings.idField }}">
+      {{#let detailCol=(codefabricUtils.first this.table.settings.columns 'detail' 'type')}}
+        {{#if this.table.settings.detailTemplate}}
+          <td colspan="{{#if this.table.settings.inline}}{{codefabricMath.add this.table.settings.columns.length 1}}{{else}}{{this.table.settings.columns.length}}{{/if}}">
+            {{> Template.dynamic template=this.table.settings.detailTemplate data=(codefabricUtils.getValue . detailCol.field)}}
+          </td>
+        {{else}}
+          <td colspan="{{#if this.table.settings.inline}}{{codefabricMath.add this.table.settings.columns.length 1}}{{else}}{{this.table.settings.columns.length}}{{/if}}">
+          {{> codefabricShopifyUITable collection=(codefabricUtils.getValue . detailCol.field) settings=detailCol.detailSettings}}</td>
+        {{/if}}
+      {{/let}}
+    </tr>
+  {{/if}}
+</template>

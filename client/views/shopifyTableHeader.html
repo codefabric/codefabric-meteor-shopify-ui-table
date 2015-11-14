@@ -1,0 +1,30 @@
+<!-- client/views/shopifyTableHeader.html -->
+
+<template name="codefabricShopifyUITableHeader">
+  <thead>
+    <tr>
+      {{#each this.settings.columns}}
+        {{#if codefabricUtils.eq type 'select'}}
+          <th class="select">
+            <input type="checkbox" title="Select All" class="checkbox select-all" />
+          </th>
+        {{else}}
+          {{#if codefabricUtils.eq type 'detail'}}
+            <th></th>
+          {{else}}
+            <th class="{{#if sortable}}sortable{{/if}}">
+            {{#if sortable}}
+              <a class="sort" data-sort="{{field}}" href title="Sort by {{displayName}}">{{displayName}}{{#if isDefaultSort }}<i class="fa fa-caret-up"></i>{{/if}}</a>
+            {{else}}
+              {{displayName}}
+            {{/if}}
+            </th>
+          {{/if}}
+        {{/if}}
+      {{/each}}
+      {{#if this.settings.inline}}
+        <th></th>
+      {{/if}}
+    </tr>
+    </thead>
+</template>

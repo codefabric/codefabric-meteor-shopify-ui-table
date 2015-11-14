@@ -1,0 +1,31 @@
+<!-- client/views/shopifyItemEdit.html -->
+
+<template name="codefabricShopifyUITableItemEdit">
+  <form class="edit" data-id={{_id}}>
+    {{#each this.table.settings.columns}}
+      <span class="{{field}}">
+        {{#if codefabricUtils.eq type 'select'}}
+          <input type="checkbox" title="Select {{table.settings.type}}" class="checkbox select" {{ selected }} disabled />
+        {{else}}
+          {{#if editable }}
+            {{#if editTemplate}}
+              {{> Template.dynamic template=editTemplate data=(codefabricUtils.getValue .. field)}}
+            {{else}}
+              <input type="{{type}}" name="{{field}}" value="{{codefabricUtils.getValue .. field}}" {{validationAttributes}} />
+            {{/if}}
+          {{else}}
+            {{#if displayTemplate}}
+              {{> Template.dynamic template=displayTemplate data=(codefabricUtils.getValue .. field)}}                  
+            {{else}}
+              {{codefabricUtils.getValue .. field}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </span>
+    {{/each}}
+    <span>
+      <a class="btn primary save" href>Save</a>
+      <a class="cancel" href>Cancel</a>
+    </span>
+  </form>
+</template>

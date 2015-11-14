@@ -1,0 +1,19 @@
+<!-- client/views/shopifyTable.html -->
+
+<template name="codefabricShopifyUITable">
+  <table class="table-section">
+    {{> Template.dynamic template=table.settings.headerTemplate data=table}}
+    <tbody>
+      {{#each table.data }}
+        {{#if isEditing }}
+          {{> Template.dynamic template=table.settings.editItemTemplate }}
+        {{else}}
+          {{> Template.dynamic template=table.settings.itemTemplate }}
+        {{/if}}
+      {{/each}}
+      {{#if table.settings.inline }}
+        {{> Template.dynamic template=table.settings.addItemTemplate data=table }}
+      {{/if}}
+    </tbody>
+  </table>
+</template>

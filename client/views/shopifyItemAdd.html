@@ -1,0 +1,32 @@
+<!-- client/views/shopifyItemAdd.html -->
+
+<template name="codefabricShopifyUITableItemAdd">
+  {{#if isAdding }}
+    <form class="add">
+      {{#each this.settings.columns}}
+        <span>
+        {{#if codefabricUtils.or addable editable }}
+          {{#if addTemplate}}
+            {{> Template.dynamic template=addTemplate data=(codefabricUtils.getValue .. field)}}
+          {{else}}
+            <input type="{{type}}" name="{{field}}" {{validationAttributes}} />
+          {{/if}}
+        {{else}}
+        {{/if}}
+        </span>
+      {{/each}}
+      <span>
+        <button type="submit" class="btn primary save" href>{{saveButtonText}}</button>
+        <a class="cancel" href>{{cancelButtonText}}</a>
+      </span>
+    </form>
+  {{else}}
+    {{#if this.settings.canAdd }}
+    <tr class="add">
+      <td colspan="{{ codefabricMath.add this.settings.columns.length 1 }}">
+        <a class="btn primary add" href>{{addButtonText}}</a>
+      </td>
+    </tr>
+    {{/if}}
+  {{/if}}
+</template>
