@@ -11,7 +11,7 @@
         {{else}}
           {{#if codefabricUtils.eq type 'detail'}}
             <td class="detail">
-              <a class="detail-expand" href data-detail="{{ codefabricUtils.getValue .. this.table.settings.idField }}" title="Show {{ displayName }}"><i class="fa fa-caret-down"></i></a>
+              <a class="detail-expand" href title="Show {{ displayName }}"><i class="fa fa-caret-down"></i></a>
             </td>
           {{else}}
             {{#if displayTemplate}}
@@ -37,7 +37,7 @@
     {{/if}}
   </tr>
   {{#if codefabricUtils.contains this.table.settings.columns 'detail' 'type' }}
-    <tr class="detail" data-detail="{{ codefabricUtils.getValue . this.table.settings.idField }}">
+    <tr class="detail">
       {{#let detailCol=(codefabricUtils.first this.table.settings.columns 'detail' 'type')}}
         {{#if this.table.settings.detailTemplate}}
           <td colspan="{{#if this.table.settings.inline}}{{codefabricMath.add this.table.settings.columns.length 1}}{{else}}{{this.table.settings.columns.length}}{{/if}}">
