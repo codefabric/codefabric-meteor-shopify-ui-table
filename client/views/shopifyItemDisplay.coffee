@@ -57,12 +57,14 @@ namespace 'CodeFabric.Shopify.UI', () ->
     __showDetail: (detailElm, callback) ->
       detailElm.row.slideDown ->
         detailElm.link.find('i').removeClass('fa-caret-down').addClass('fa-caret-up')
-        callback()
+        if callback?
+          callback()
 
     __hideDetail: (detailElm, callback) ->
       detailElm.row.slideUp ->
         detailElm.link.find('i').removeClass('fa-caret-up').addClass('fa-caret-down')
-        callback()
+        if callback?
+          callback()
 
     __findDetailElements: () ->
       detailLink = $(Template.instance().firstNode).find("td.detail>a")
