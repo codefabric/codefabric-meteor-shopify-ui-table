@@ -11,7 +11,17 @@
             {{#if editTemplate}}
               {{> Template.dynamic template=editTemplate data=(codefabricUtils.getValue .. field)}}
             {{else}}
-              <input type="{{type}}" name="{{field}}" value="{{codefabricUtils.getValue .. field}}" {{validationAttributes}} />
+              {{#if codefabricUtils.eq type 'dropdown'}}
+                {{#let value=(codefabricUtils.getValue .. field)}}
+                <select name="{{field}}" value="{{codefabricUtils.getValue .. field}}" {{validationAttributes}}>
+                  {{#each options}}
+                  <option name="{{ . }}" value="{{ . }}" {{optionSelected . value }}>{{ . }}</option>
+                  {{/each}}
+                </select>
+                {{/let}}
+              {{else}}
+                <input type="{{type}}" name="{{field}}" value="{{codefabricUtils.getValue .. field}}" {{validationAttributes}} />
+              {{/if}}
             {{/if}}
           {{else}}
             {{#if displayTemplate}}

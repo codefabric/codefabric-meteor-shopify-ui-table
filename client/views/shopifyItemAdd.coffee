@@ -25,6 +25,8 @@ namespace 'CodeFabric.Shopify.UI', () ->
         data = { }
         @settings.columns.forEach (col) ->
           input = form.find("input[name='" + col.field + "']")
+          if !input? or input.length == 0
+            input = form.find("select[name='#{col.field}']")
           if input && (col.editable || true)
             data[col.field] = input.val()
 
