@@ -1,6 +1,6 @@
 Package.describe({
   name: 'codefabric:meteor-shopify-ui-table',
-  version: '0.0.1',
+  version: '0.1.0',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
@@ -20,10 +20,10 @@ Package.onUse(function(api) {
            'underscore',
            'session',
            'tracker',
-           'themeteorchef:jquery-validation',
-           'fortawesome:fontawesome',
-           'codefabric:meteor-common',
-           'codefabric:meteor-shopify']);
+           'themeteorchef:jquery-validation@1.0.0',
+           'fortawesome:fontawesome@4.4.0',
+           'codefabric:meteor-common@0.1.0',
+           'codefabric:meteor-shopify@0.1.0']);
 
   api.imply('codefabric:meteor-common');
   api.imply('codefabric:meteor-shopify');
