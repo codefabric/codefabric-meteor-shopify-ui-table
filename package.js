@@ -20,7 +20,7 @@ Package.onUse(function(api) {
            'underscore',
            'session',
            'tracker',
-           'themeteorchef:jquery-validation@1.0.0',
+           'themeteorchef:jquery-validation@1.14.0',
            'fortawesome:fontawesome@4.4.0',
            'codefabric:meteor-common@0.1.0',
            'codefabric:meteor-shopify@0.1.0']);
