@@ -5,7 +5,10 @@ namespace 'CodeFabric.Shopify.UI', (ns)->
   class Table
 
     constructor: (collection, options) ->
-      @id = new Mongo.ObjectID()
+      if options.id?
+        @id = options.id
+      else
+        @id = new Mongo.ObjectID()
 
       @ADD_SESSION_KEY = 'codefabric::shopify::ui::table::' + @id + '::add'
       @SORT_SESSION_KEY = 'codefabric::shopify::ui::table::' + @id + '::sort'
